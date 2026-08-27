@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angsuman Das | Document Download Center</title>
+    <meta name="description" content="Download center for Angsuman Das's academic certificates, marksheets, research papers, identity documents, experience letters, and diplomas.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        .download-header {
+            text-align: center;
+            padding: 120px 20px 40px;
+        }
+        .search-box {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+        }
+        .dl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .dl-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .dl-card h4 {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .dl-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .format-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <nav id="navbar">
+        <div class="nav-content">
+            <h1 class="logo"><a href="index.html" style="color: var(--accent); text-decoration: none;">AD.</a></h1>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#diplomas">Diplomas</a></li>
+                <li><a href="index.html#exams">Exams</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="download.html" style="color: var(--accent); font-weight: 600;">Download Center</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="download-header">
+        <h1 class="name">Document Download Center</h1>
+        <p class="summary" style="margin: 0.5rem auto 0;">Access and download all official academic records, marksheets, identity cards, experience letters, LORs, and research papers in multiple formats.</p>
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="docSearch" class="search-input" placeholder="Search document (e.g., Aadhaar, Marksheet, NET, IELTS, Diploma)..." onkeyup="filterDocs()">
+        </div>
+    </div>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 20px 100px;">
+        
+        <!-- SECTION 1: IDENTITY & PERSONAL -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">🪪 <span>Identity & Demographic Documents</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Aadhaar Card (Front Side)</h4>
+                        <p>Government of India Unique Identification Card (Front).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/AADHAR%20(FRONT).jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/AADHAR%20(FRONT).jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/ID_Cards/AADHAR%20(FRONT).jpeg', 'Aadhaar Card Front')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Aadhaar Card (Back Side)</h4>
+                        <p>Government of India Unique Identification Card (Back Address).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/AADHAR(BACK).jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/AADHAR(BACK).jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/ID_Cards/AADHAR(BACK).jpeg', 'Aadhaar Card Back')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Combined PDF</span>
+                        <h4>Aadhaar Card (Combined Front + Back PDF)</h4>
+                        <p>Single PDF document containing both Front and Back sides of Aadhaar Card.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/aadhaar_card_combined.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/aadhaar_card_combined.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>PAN Card (Permanent Account Number)</h4>
+                        <p>Income Tax Department Government of India PAN Card.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/PAN.jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/PAN.jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/ID_Cards/PAN.jpeg', 'PAN Card')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Driving License</h4>
+                        <p>Official Driving License Document.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/LICENSE.jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/LICENSE.jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/ID_Cards/LICENSE.jpeg', 'Driving License')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Voter ID Card (Front Side)</h4>
+                        <p>Election Commission of India Identity Card (Front).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/VOTER_ID(FRONT).jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/VOTER_ID(FRONT).jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/ID_Cards/VOTER_ID(FRONT).jpeg', 'Voter ID Front')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Voter ID Card (Back Side)</h4>
+                        <p>Election Commission of India Identity Card (Back Address).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/VOTER_ID(BACK).jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/VOTER_ID(BACK).jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/ID_Cards/VOTER_ID(BACK).jpeg', 'Voter ID Back')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Combined PDF</span>
+                        <h4>Voter ID Card (Combined Front + Back PDF)</h4>
+                        <p>Single PDF document containing both Front and Back sides of Voter ID Card.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/ID_Cards/voter_id_card_combined.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/identity_and_personal/ID_Cards/voter_id_card_combined.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Passport (Front Page)</h4>
+                        <p>Republic of India Passport Information Page.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Passport/passport_front_page.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Passport/passport_front_page.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Passport/passport_front_page.jpg', 'Passport Front Page')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Passport (Back Page)</h4>
+                        <p>Republic of India Passport Address Page.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Passport/passport_back_page.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Passport/passport_back_page.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Passport/passport_back_page.jpg', 'Passport Back Page')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Combined PDF</span>
+                        <h4>Passport (Combined Front + Back PDF)</h4>
+                        <p>Single PDF document containing both Front and Back pages of Passport.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Passport/passport_combined.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/identity_and_personal/Passport/passport_combined.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Birth Certificate</h4>
+                        <p>Official Record of Birth Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Certificates/birth_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Certificates/birth_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Certificates/birth_certificate.jpg', 'Birth Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Permanent Residence Certificate (PRC)</h4>
+                        <p>Government of Assam Residence Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Certificates/permanent_residence_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Certificates/permanent_residence_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Certificates/permanent_residence_certificate.jpg', 'Permanent Residence Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>OBC Caste Certificate (Digital)</h4>
+                        <p>Other Backward Classes Caste Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Certificates/obc_caste_certificate_digital.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Certificates/obc_caste_certificate_digital.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Certificates/obc_caste_certificate_digital.jpg', 'OBC Caste Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>OBC NCL Certificate</h4>
+                        <p>Non-Creamy Layer OBC Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Certificates/obc_ncl_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Certificates/obc_ncl_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Certificates/obc_ncl_certificate.jpg', 'OBC NCL Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Father's OBC Certificate</h4>
+                        <p>OBC Certificate of Father.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Certificates/father_obc_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Certificates/father_obc_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Certificates/father_obc_certificate.jpg', 'Father OBC Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Annual Income Certificate</h4>
+                        <p>Official Annual Family Income Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Certificates/annual_income_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View High-Res</a>
+                        <a href="./documents/identity_and_personal/Certificates/annual_income_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Certificates/annual_income_certificate.jpg', 'Annual Income Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PHOTOS & ASSETS -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">🖼️ <span>Photos, Signatures & Assets</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Passport Size Photo (Upscaled)</h4>
+                        <p>High quality formal passport photograph.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/passport_photo.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/passport_photo.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Photos_and_Signatures/passport_photo.jpg', 'Passport Size Photo')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Official Signature</h4>
+                        <p>Clean digital signature asset.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/signature.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/signature.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Photos_and_Signatures/signature.jpg', 'Official Signature')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Thumb Impression</h4>
+                        <p>Official thumb impression scan.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/thumb_impression.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/thumb_impression.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Photos_and_Signatures/thumb_impression.jpg', 'Thumb Impression')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Portrait Stencil</h4>
+                        <p>Artistic portrait stencil image.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/portrait_stencil.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/identity_and_personal/Photos_and_Signatures/portrait_stencil.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/identity_and_personal/Photos_and_Signatures/portrait_stencil.jpg', 'Portrait Stencil')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ACADEMIC MARKSHEETS & DEGREES -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">🎓 <span>Academic Marksheets & Degree Certificates</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>M.Sc. Zoology Degree Certificate</h4>
+                        <p>Rajiv Gandhi University Master's Degree.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/MSc_Master/msc_zoology_degree_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/MSc_Master/msc_zoology_degree_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/MSc_Master/msc_zoology_degree_certificate.jpg', 'M.Sc. Zoology Degree Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>M.Sc. Sem 4 Marksheet</h4>
+                        <p>Rajiv Gandhi University final transcript (CGPA 7.29).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/MSc_Master/msc_sem4_marksheet_rajiv_gandhi_university.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/MSc_Master/msc_sem4_marksheet_rajiv_gandhi_university.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/MSc_Master/msc_sem4_marksheet_rajiv_gandhi_university.jpg', 'M.Sc. Sem 4 Marksheet')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Merged PDF</span>
+                        <h4>M.Sc. All Semester Documents (Merged PDF)</h4>
+                        <p>Complete merged PDF for M.Sc. degree and marksheets.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/MSc_Master/msc_merged.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/academic/MSc_Master/msc_merged.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>B.Sc. Degree Certificate</h4>
+                        <p>Gauhati University Bachelor's Degree Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/BSc_Bachelor/bsc_degree_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/BSc_Bachelor/bsc_degree_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/BSc_Bachelor/bsc_degree_certificate.jpg', 'B.Sc. Degree Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>B.Sc. Grade Sheet</h4>
+                        <p>Gauhati University B.Sc. Grade Sheet (CGPA 7.9).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/BSc_Bachelor/bsc_grade_sheet_gauhati_university.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/BSc_Bachelor/bsc_grade_sheet_gauhati_university.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/BSc_Bachelor/bsc_grade_sheet_gauhati_university.jpg', 'B.Sc. Grade Sheet')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Merged PDF</span>
+                        <h4>B.Sc. All Documents (Merged PDF)</h4>
+                        <p>Complete merged PDF for B.Sc. degree and marksheets.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/BSc_Bachelor/bsc_merged.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/academic/BSc_Bachelor/bsc_merged.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>12th HS Marksheet</h4>
+                        <p>AHSEC Higher Secondary Marksheet (414 / 500).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/12th_HS/hs_marksheet.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/12th_HS/hs_marksheet.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/12th_HS/hs_marksheet.jpg', '12th HS Marksheet')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>12th HS Certificate</h4>
+                        <p>AHSEC Higher Secondary Pass Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/12th_HS/hs_certificate_ahsec_duplicate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/12th_HS/hs_certificate_ahsec_duplicate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/12th_HS/hs_certificate_ahsec_duplicate.jpg', '12th HS Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>10th HSLC Marksheet</h4>
+                        <p>SEBA Matriculation Marksheet (449 / 600).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/10th_Matric/hslc_marksheet_seba.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/10th_Matric/hslc_marksheet_seba.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/10th_Matric/hslc_marksheet_seba.jpg', '10th HSLC Marksheet')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>10th HSLC Matric Certificate</h4>
+                        <p>SEBA Matriculation Pass Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/academic/10th_Matric/hslc_matric_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/academic/10th_Matric/hslc_matric_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/academic/10th_Matric/hslc_matric_certificate.jpg', '10th HSLC Matric Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: DIPLOMAS & CERTIFICATIONS -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">📜 <span>Diplomas & Certifications</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Genomic Data Science Specialization</h4>
+                        <p>Johns Hopkins University (Coursera 8-Course Specialization).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/certificates/coursera_genomic_data_science_specialization.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/certificates/coursera_genomic_data_science_specialization.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/certificates/coursera_genomic_data_science_specialization.jpg', 'Genomic Data Science Specialization')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>PGDCA Diploma Certificate</h4>
+                        <p>Post Graduate Diploma in Computer Application (DIT Education - 1 Year).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/certificates/pgdca_diploma_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/certificates/pgdca_diploma_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/certificates/pgdca_diploma_certificate.jpg', 'PGDCA Diploma Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Fine Arts / Drawing Junior Diploma</h4>
+                        <p>Junior Diploma Part-II in Art (Sarbabharatiya Sangeet-O-Sanskriti Parishad).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/certificates/drawing_junior_diploma_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/certificates/drawing_junior_diploma_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/certificates/drawing_junior_diploma_certificate.jpg', 'Fine Arts Junior Diploma')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Computer Literacy Certificate</h4>
+                        <p>Rajiv Gandhi Computer Literacy Program Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/certificates/rajiv_gandhi_computer_literacy_certificate.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/certificates/rajiv_gandhi_computer_literacy_certificate.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/certificates/rajiv_gandhi_computer_literacy_certificate.jpg', 'Computer Literacy Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: COMPETITIVE EXAMS -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">🏆 <span>Competitive Exams & Scorecards</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>CSIR-UGC NET JRF Scorecard</h4>
+                        <p>CSIR-UGC NET Life Sciences (Rank 180, Percentile 97.50%).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/competitive_exams/net_jrf_scorecard.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/competitive_exams/net_jrf_scorecard.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/competitive_exams/net_jrf_scorecard.jpg', 'CSIR-UGC NET JRF Scorecard')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>CSIR-UGC NET JRF Award Letter</h4>
+                        <p>Official Award Letter for Junior Research Fellowship.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/competitive_exams/csir_net_jrf_award_letter.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/competitive_exams/csir_net_jrf_award_letter.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/competitive_exams/csir_net_jrf_award_letter.jpg', 'CSIR-UGC NET JRF Award Letter')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>IELTS Academic Test Report</h4>
+                        <p>IELTS Academic Overall Band Score 7.0 (CEFR C1).</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/competitive_exams/ielts_test_report_academic.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/competitive_exams/ielts_test_report_academic.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/competitive_exams/ielts_test_report_academic.jpg', 'IELTS Academic Test Report')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>SLET Result Sheet 2023</h4>
+                        <p>State Eligibility Test for Lectureship result document.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/competitive_exams/slet_result_sheet_2023.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/competitive_exams/slet_result_sheet_2023.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: WORK EXPERIENCE & LETTERS -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">💼 <span>Experience & Appointment Letters</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>THB College Experience Certificate</h4>
+                        <p>Assistant Professor (Tutor) Dept. of Zoology Experience Certificate.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/work_and_experience/THB%20College%20Experience.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/work_and_experience/THB%20College%20Experience.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>RASA Experience Certificate</h4>
+                        <p>Research Trainee Certificate for Homology Modelling of Human TLR.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/work_and_experience/RASA_Experience.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/work_and_experience/RASA_Experience.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/work_and_experience/RASA_Experience.jpg', 'RASA Experience Certificate')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Tocklai Appointment Letter</h4>
+                        <p>Tocklai Experimental Station official appointment letter.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/work_and_experience/Tocklai%20Appointment%20Letter.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/work_and_experience/Tocklai%20Appointment%20Letter.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/work_and_experience/Tocklai%20Appointment%20Letter.jpg', 'Tocklai Appointment Letter')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>University of East London Offer Letter</h4>
+                        <p>Official admission offer letter from UEL.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/work_and_experience/university_of_east_london_offer_letter.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/work_and_experience/university_of_east_london_offer_letter.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>University of Portsmouth Offer Letter</h4>
+                        <p>Official admission offer letter from Portsmouth.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/work_and_experience/university_of_portsmouth_offer_letter.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/work_and_experience/university_of_portsmouth_offer_letter.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: RESUME & DATA -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">📝 <span>Resume & Complete Records</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Resume</span>
+                        <h4>Curriculum Vitae / Resume (NEW_RESUME.pdf)</h4>
+                        <p>Latest updated CV containing academic and professional achievements.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/resume/NEW_RESUME.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/resume/NEW_RESUME.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">TXT Record</span>
+                        <h4>Comprehensive Resume Data (TXT)</h4>
+                        <p>Complete text record with all academic subject marks, exam scores, and work dates.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./comprehensive_resume_data.txt" target="_blank" class="doc-btn"><i class="fas fa-file-alt"></i> View TXT</a>
+                        <a href="./comprehensive_resume_data.txt" download class="doc-btn"><i class="fas fa-download"></i> Download TXT</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: LETTERS OF RECOMMENDATION (LORs) -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">✉️ <span>Letters of Recommendation & References</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Recommendation Letter - Abhijit Das (MRes)</h4>
+                        <p>Academic recommendation letter for MRes program.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/recommendation_letter_abhijit_das_mres.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/recommendations/recommendation_letter_abhijit_das_mres.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/recommendations/recommendation_letter_abhijit_das_mres.jpg', 'Recommendation Letter - Abhijit Das (MRes)')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Recommendation Letter - Abhijit Das (PhD)</h4>
+                        <p>Academic recommendation letter for PhD admission.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/recommendation_letter_abhijit_das_phd.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/recommendations/recommendation_letter_abhijit_das_phd.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/recommendations/recommendation_letter_abhijit_das_phd.jpg', 'Recommendation Letter - Abhijit Das (PhD)')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Recommendation Letter - Pankaj Kumar</h4>
+                        <p>Research recommendation letter by Dr. Pankaj Kumar.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/recommendation_letter_pankaj_kumar.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/recommendations/recommendation_letter_pankaj_kumar.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/recommendations/recommendation_letter_pankaj_kumar.jpg', 'Recommendation Letter - Pankaj Kumar')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>LOR - Malobika Padmapati</h4>
+                        <p>Academic recommendation letter by Prof. Malobika Padmapati.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/lor_malobika_padmapati.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/recommendations/lor_malobika_padmapati.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/recommendations/lor_malobika_padmapati.jpg', 'LOR - Malobika Padmapati')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>LOR - RASA (Sameer Choudhary)</h4>
+                        <p>Recommendation letter by Sameer Choudhary, Chief Scientist at RASA.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/lor_rasa_sameer_choudhary.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/recommendations/lor_rasa_sameer_choudhary.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/recommendations/lor_rasa_sameer_choudhary.jpg', 'LOR - RASA (Sameer Choudhary)')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>Recommendation Letter - RASA Erasmus</h4>
+                        <p>Erasmus exchange recommendation letter from RASA.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/recommendation_letter_rasa_erasmus.jpg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/recommendations/recommendation_letter_rasa_erasmus.jpg" download class="doc-btn"><i class="fas fa-download"></i> Download JPG</a>
+                        <button onclick="openConvertModal('./documents/recommendations/recommendation_letter_rasa_erasmus.jpg', 'Recommendation Letter - RASA Erasmus')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">DOCX Document</span>
+                        <h4>RASA Recommendation Document (DOCX)</h4>
+                        <p>Editable recommendation letter document from RASA.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/recommendations/RASA%20recommendation.docx" target="_blank" class="doc-btn"><i class="fas fa-file-word"></i> Open DOCX</a>
+                        <a href="./documents/recommendations/RASA%20recommendation.docx" download class="doc-btn"><i class="fas fa-download"></i> Download DOCX</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: STUDY MATERIALS & NOTES -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">📚 <span>Study Materials & Research Notes</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>Ecology Academic Notes</h4>
+                        <p>Comprehensive lecture notes and study material on Ecology.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/study_materials/ecology_notes.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/study_materials/ecology_notes.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>Evolution Academic Notes</h4>
+                        <p>Detailed course notes covering Evolutionary Biology.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/study_materials/evolution_notes.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/study_materials/evolution_notes.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">DOCX Document</span>
+                        <h4>Developmental Biology Notes</h4>
+                        <p>Course notes covering Developmental Biology.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/study_materials/developmental_biology_notes.docx" target="_blank" class="doc-btn"><i class="fas fa-file-word"></i> Open DOCX</a>
+                        <a href="./documents/study_materials/developmental_biology_notes.docx" download class="doc-btn"><i class="fas fa-download"></i> Download DOCX</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>Pandas Data Analysis Cheat Sheet</h4>
+                        <p>Quick reference cheat sheet for Python Pandas library.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/study_materials/pandas_cheat_sheet.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/study_materials/pandas_cheat_sheet.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>Gut Microbiome Research Proposal</h4>
+                        <p>Research proposal document on gut microbiome dynamics.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/study_materials/gut_microbiome_research_proposal.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/study_materials/gut_microbiome_research_proposal.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Document</span>
+                        <h4>Comparative Marking Statement (Zoology)</h4>
+                        <p>Official comparative marking statement analysis.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/study_materials/comparative_marking_statement_zoology.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/study_materials/comparative_marking_statement_zoology.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 10: PUBLISHED PAPERS -->
+        <section class="section" style="padding: 30px 0;">
+            <h2 class="section-title">📄 <span>Published Papers & Manuscripts</span></h2>
+            <div class="dl-grid">
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>A Green Solution to Industrial Dye Pollution</h4>
+                        <p>Research paper exploring eco-friendly treatment methods.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/A%20green%20solution%20to%20industrial%20dye%20pollution%20Exploring%20the.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/A%20green%20solution%20to%20industrial%20dye%20pollution%20Exploring%20the.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>Analysis of Physico-Chemical Parameters of Aquatic Ecosystems</h4>
+                        <p>Scientific publication analyzing aquatic water parameters.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/Analysis%20of%20the%20physico-chemical%20parameters%20of.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/Analysis%20of%20the%20physico-chemical%20parameters%20of.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>Aquatic Remedies: An Ethnopharmacological Study</h4>
+                        <p>Research paper on traditional aquatic medicine & ethnopharmacology.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/Aquatic%20Remedies%20An%20Ethnopharmacological.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/Aquatic%20Remedies%20An%20Ethnopharmacological.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>Clinical Applications of Mass Spectrometry</h4>
+                        <p>Review paper on toxicological applications of mass spectrometry.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/Clinical%20Applications%20of%20Mass%20Spectrometry%20in%20Toxicological.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/Clinical%20Applications%20of%20Mass%20Spectrometry%20in%20Toxicological.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>Conversational Interfaces in Bioinformatics</h4>
+                        <p>Paper bridging computational biology with conversational AI.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/Conversational%20Interfaces%20in%20Bioinformatics%20Bridging%20Computational.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/Conversational%20Interfaces%20in%20Bioinformatics%20Bridging%20Computational.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>Cultural Zoology: Ethnozoological Traditions of Assam</h4>
+                        <p>Paper exploring ethnozoology of traditional Assamese tribes.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/Cultural%20Zoology%20Unveiling%20The%20Ethnozoological%20Tradition%20Of%20Assamese%20Tribes.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/Cultural%20Zoology%20Unveiling%20The%20Ethnozoological%20Tradition%20Of%20Assamese%20Tribes.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>GPT Vision Meets Taxonomy</h4>
+                        <p>Research manuscript on computer vision & AI applications in biological taxonomy.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/GPT%20Vision%20Meets%20Taxonomy.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/GPT%20Vision%20Meets%20Taxonomy.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Paper</span>
+                        <h4>Green Heritage of Assam: Meta-analysis</h4>
+                        <p>Comprehensive meta-analysis of traditional knowledge in Assam.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/publications/Green%20Heritage%20Of%20Assam%20A%20Comprehensive%20Metaanalysis%20Of%20Traditional.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="./documents/publications/Green%20Heritage%20Of%20Assam%20A%20Comprehensive%20Metaanalysis%20Of%20Traditional.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Angsumi" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://rangachakua.blogspot.com" target="_blank"><i class="fas fa-blog"></i></a>
+            <a href="mailto:angsudas62@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Built with ❤️ for Angsuman Das | CSIR-UGC NET JRF</p>
+    </footer>
+
+    <!-- Custom Format & Size Download Modal -->
+    <div id="convertModal" class="modal-overlay">
+        <div class="modal-content glass" style="max-width: 500px;">
+            <button class="close-modal" onclick="closeConvertModal()">&times;</button>
+            <h2 class="modal-title" style="font-size: 1.3rem;"><i class="fas fa-sliders-h"></i> Custom Format & Size Options</h2>
+            <p id="convertDocName" style="color: var(--accent); font-weight: 600; margin-bottom: 1.25rem; font-size: 0.95rem;"></p>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+                <div>
+                    <label style="color: var(--text-main); font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Select Export Format:</label>
+                    <select id="exportFormat" style="width: 100%; padding: 0.65rem 0.8rem; border-radius: 8px; background: rgba(10, 25, 47, 0.95); border: 1px solid var(--accent); color: var(--text-main); font-size: 0.9rem;">
+                        <option value="pdf">PDF (PDF Document)</option>
+                        <option value="jpeg">JPG (Standard Photo / High Quality)</option>
+                        <option value="png">PNG (Lossless Image)</option>
+                        <option value="webp">WEBP (Web Compressed)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="color: var(--text-main); font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Select Resolution / Quality Size:</label>
+                    <select id="exportScale" style="width: 100%; padding: 0.65rem 0.8rem; border-radius: 8px; background: rgba(10, 25, 47, 0.95); border: 1px solid var(--accent); color: var(--text-main); font-size: 0.9rem;">
+                        <option value="1">Original Resolution (100% Full 300 DPI)</option>
+                        <option value="0.75">High HD Size (75% Resolution)</option>
+                        <option value="0.50">Medium Size (50% Resolution)</option>
+                        <option value="0.25">Small / Passport Size (25% Resolution)</option>
+                    </select>
+                </div>
+
+                <div style="margin-top: 0.5rem; display: flex; gap: 1rem;">
+                    <button onclick="processAndDownload()" class="btn primary-btn" style="flex: 1; cursor: pointer; text-align: center; justify-content: center;"><i class="fas fa-download"></i> Convert & Download</button>
+                </div>
+                <div id="convertStatus" style="font-size: 0.85rem; color: var(--accent); text-align: center; margin-top: 0.25rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterDocs() {
+            const query = document.getElementById('docSearch').value.toLowerCase();
+            const items = document.querySelectorAll('.doc-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        let currentImgUrl = '';
+        let currentDocTitle = '';
+
+        function openConvertModal(url, title) {
+            currentImgUrl = url;
+            currentDocTitle = title;
+            document.getElementById('convertDocName').innerText = title;
+            document.getElementById('convertStatus').innerText = '';
+            document.getElementById('convertModal').classList.add('active');
+        }
+
+        function closeConvertModal() {
+            document.getElementById('convertModal').classList.remove('active');
+        }
+
+        function processAndDownload() {
+            const status = document.getElementById('convertStatus');
+            status.innerText = 'Processing custom format canvas...';
+
+            const format = document.getElementById('exportFormat').value;
+            const scale = parseFloat(document.getElementById('exportScale').value);
+
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = Math.round(img.width * scale);
+                    canvas.height = Math.round(img.height * scale);
+                    const ctx = canvas.getContext('2d');
+                    
+                    if (format === 'jpeg' || format === 'pdf') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    }
+                    
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const cleanTitle = currentDocTitle.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+                    if (format === 'pdf') {
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF({
+                            orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+                            unit: 'px',
+                            format: [canvas.width, canvas.height]
+                        });
+                        doc.addImage(dataUrl, 'JPEG', 0, 0, canvas.width, canvas.height);
+                        doc.save(cleanTitle + '_' + Math.round(scale*100) + 'pct.pdf');
+                        status.innerText = '✅ Custom PDF generated & downloaded!';
+                        return;
+                    }
+                    
+                    const mimeType = 'image/' + format;
+                    const dataUrl = canvas.toDataURL(mimeType, 0.92);
+                    
+                    const link = document.createElement('a');
+                    link.download = cleanTitle + '_' + Math.round(scale*100) + 'pct.' + format;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    status.innerText = '✅ Custom download complete!';
+                } catch(err) {
+                    window.open(currentImgUrl, '_blank');
+                    status.innerText = 'Opening high-resolution original file...';
+                }
+            };
+            img.onerror = function() {
+                window.open(currentImgUrl, '_blank');
+                status.innerText = 'Opening high-resolution original file...';
+            };
+            img.src = currentImgUrl;
+        }
+        // The download attribute is ignored by browsers for cross-origin URLs.
+        // Fetching the file first lets every document download consistently.
+        document.querySelectorAll('a[download]').forEach((downloadLink) => {
+            downloadLink.addEventListener('click', async (event) => {
+                event.preventDefault();
+
+                try {
+                    const response = await fetch(downloadLink.href);
+                    if (!response.ok) throw new Error('Download request failed');
+
+                    const file = await response.blob();
+                    const objectUrl = URL.createObjectURL(file);
+                    const link = document.createElement('a');
+                    const pathname = new URL(downloadLink.href).pathname;
+
+                    link.href = objectUrl;
+                    link.download = decodeURIComponent(pathname.split('/').pop()) || 'document';
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    URL.revokeObjectURL(objectUrl);
+                } catch (error) {
+                    window.open(downloadLink.href, '_blank', 'noopener');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
