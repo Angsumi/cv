@@ -91,8 +91,10 @@
         <p class="summary" style="margin: 0.5rem auto 0;">Access and download all official academic records, marksheets, identity cards, experience letters, LORs, and research papers in multiple formats.</p>
         <div class="search-box">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" id="docSearch" class="search-input" placeholder="Search document (e.g., Aadhaar, Marksheet, NET, IELTS, Diploma)..." onkeyup="filterDocs()">
+            <input type="text" id="docSearch" class="search-input" placeholder="Search documents (e.g. Aadhaar, Marksheet, NET, IELTS, Resume, Passport)..." oninput="filterDocs()">
+            <button id="searchClear" onclick="clearSearch()" title="Clear search" style="display:none;position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--accent);font-size:1.2rem;cursor:pointer;padding:0.2rem 0.4rem;">&#x2715;</button>
         </div>
+        <p id="searchCount" style="margin:0.5rem auto 0;font-size:0.85rem;color:var(--accent);min-height:1.2em;"></p>
     </div>
 
     <main style="max-width: 1200px; margin: 0 auto; padding: 0 20px 100px;">
@@ -1063,17 +1065,127 @@
     </div>
 
     <script>
-        function filterDocs() {
-            const query = document.getElementById('docSearch').value.toLowerCase();
-            const items = document.querySelectorAll('.doc-item');
-            items.forEach(item => {
-                const text = item.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
+        /* ── Smart Document Search ─────────────────────────────────────── */
+
+        const SYNONYMS = {
+            'aadhaar': ['aadhar','aadhaar','uid'],
+            'aadhar':  ['aadhaar','aadhar','uid'],
+            'pan':     ['pan card','permanent account'],
+            'voter':   ['voter id','election','voter card'],
+            'passport':['passport'],
+            'license': ['driving licence','dl'],
+            'licence': ['driving licence','license'],
+            'resume':  ['cv','curriculum vitae','resume'],
+            'cv':      ['resume','curriculum vitae','cv'],
+            'net':     ['csir','ugc net','net jrf','jrf','national eligibility'],
+            'jrf':     ['net jrf','csir','ugc','junior research fellowship'],
+            'slet':    ['slet','state level eligibility'],
+            'ielts':   ['ielts','english test'],
+            'msc':     ['msc','m.sc','master','postgraduate','pg'],
+            'bsc':     ['bsc','b.sc','bachelor','undergraduate','ug'],
+            'matric':  ['10th','hslc','seba','matric','secondary'],
+            '10th':    ['hslc','matric','seba','10th','secondary'],
+            'hs':      ['12th','ahsec','higher secondary'],
+            '12th':    ['ahsec','hs','higher secondary','12th'],
+            'marksheet':   ['marksheet','mark sheet','scorecard','grade sheet'],
+            'certificate': ['certificate','cert'],
+            'diploma': ['diploma','pgdca','drawing diploma'],
+            'pgdca':   ['pgdca','diploma','computer'],
+            'coursera':['coursera','genomic','johns hopkins'],
+            'lor':     ['letter of recommendation','reference letter','lor'],
+            'recommendation':['lor','letter of recommendation','reference'],
+            'experience':['experience','internship','certificate of experience'],
+            'internship':['internship','experience','training'],
+            'publication':['publication','paper','journal','research paper'],
+            'paper':   ['publication','paper','journal','article'],
+            'adre':    ['adre','assam direct recruitment','government','appointment'],
+            'thb':     ['thb college','teaching experience','assistant professor'],
+            'rasa':    ['rasa','bioinformatics','research trainee'],
+            'tocklai': ['tocklai','tea research','appointment'],
+            'un':      ['united nations','un volunteers','aae','african entrepreneurs'],
+            'aae':     ['aae','african entrepreneurs','united nations volunteers'],
+            'degree':  ['degree certificate','graduation'],
+            'obc':     ['obc','other backward class','caste'],
+            'caste':   ['obc','caste certificate'],
+            'income':  ['income certificate','annual income'],
+            'birth':   ['birth certificate'],
+            'photo':   ['photo','passport photo','portrait'],
+            'signature':['signature','thumb impression'],
+        };
+
+        function getSearchableText(card) {
+            const h4    = (card.querySelector('h4')             || {innerText:''}).innerText;
+            const p     = (card.querySelector('p')              || {innerText:''}).innerText;
+            const badge = (card.querySelector('.format-badge')  || {innerText:''}).innerText;
+            const hrefs = [...card.querySelectorAll('a[href]')]
+                .map(a => a.getAttribute('href').split('/').pop().replace(/[_%]/g,' ').replace(/\.[^.]+$/,''))
+                .join(' ');
+            return `${h4} ${h4} ${h4} ${p} ${p} ${badge} ${hrefs}`.toLowerCase();
+        }
+
+        function expandTerm(term) {
+            const terms = new Set([term]);
+            const direct = SYNONYMS[term];
+            if (direct) direct.forEach(s => terms.add(s));
+            Object.entries(SYNONYMS).forEach(([key, vals]) => {
+                if (term.includes(key)) vals.forEach(v => terms.add(v));
             });
+            return [...terms];
+        }
+
+        function scoreCard(text, terms) {
+            let score = 0;
+            for (const term of terms) {
+                const expanded = expandTerm(term);
+                let termScore = 0;
+                for (const variant of expanded) {
+                    if (text.includes(variant)) termScore = Math.max(termScore, variant.length);
+                }
+                if (termScore === 0) return 0;
+                score += termScore;
+            }
+            return score;
+        }
+
+        function filterDocs() {
+            const raw   = document.getElementById('docSearch').value.trim().toLowerCase();
+            const count = document.getElementById('searchCount');
+            const clear = document.getElementById('searchClear');
+
+            clear.style.display = raw ? 'block' : 'none';
+            const terms = raw ? raw.split(/\s+/).filter(Boolean) : [];
+
+            const allCards    = document.querySelectorAll('.doc-item');
+            const allSections = document.querySelectorAll('main > section');
+            let visible = 0;
+
+            if (!raw) {
+                allCards.forEach(c => { c.style.display = ''; });
+                allSections.forEach(s => { s.style.display = ''; });
+                count.textContent = '';
+                return;
+            }
+
+            allCards.forEach(card => {
+                const score = scoreCard(getSearchableText(card), terms);
+                if (score > 0) { card.style.display = ''; visible++; }
+                else           { card.style.display = 'none'; }
+            });
+
+            allSections.forEach(section => {
+                const anyVisible = [...section.querySelectorAll('.doc-item')].some(c => c.style.display !== 'none');
+                section.style.display = anyVisible ? '' : 'none';
+            });
+
+            count.textContent = visible === 0
+                ? '⚠ No documents found. Try a different keyword.'
+                : `✓ ${visible} document${visible !== 1 ? 's' : ''} found`;
+        }
+
+        function clearSearch() {
+            document.getElementById('docSearch').value = '';
+            filterDocs();
+            document.getElementById('docSearch').focus();
         }
 
         let currentImgUrl = '';
