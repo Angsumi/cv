@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Guide Documents Repository | Angsuman Das</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 120px 20px 30px;
+        }
+        .search-box {
+            max-width: 650px;
+            margin: 1.5rem auto 0;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            border-color: #64ffda;
+        }
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .dl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .dl-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .dl-card h4 {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+        .dl-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .format-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: rgba(100, 255, 218, 0.12);
+            color: var(--accent);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .doc-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .doc-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.25rem;
+        }
+        .btn-phd-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .btn-phd-action:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+        }
+        /* Floating bottom PhD icon button */
+        .phd-fab {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #0a192f;
+            border: 2px solid #64ffda;
+            color: #64ffda;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(100, 255, 218, 0.4);
+            text-decoration: none;
+            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .phd-fab:hover {
+            transform: scale(1.1) translateY(-3px);
+            background: #64ffda;
+            color: #0a192f;
+            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.6);
+        }
+        .phd-fab .tooltip {
+            position: absolute;
+            right: 65px;
+            background: rgba(10, 25, 47, 0.95);
+            border: 1px solid #64ffda;
+            color: #ccd6f6;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+        }
+        .phd-fab:hover .tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <nav id="navbar">
+        <div class="nav-content">
+            <h1 class="logo"><a href="index.html" style="color: var(--accent); text-decoration: none;">AD.</a></h1>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="download.html">Download Center</a></li>
+                <li><a href="phd-docs.html" style="color: var(--accent); font-weight: 600;"><i class="fas fa-graduation-cap"></i> PhD Guide Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1 class="name"><i class="fas fa-user-graduate" style="color: var(--accent);"></i> PhD Guide Documents Repository</h1>
+        <p class="summary" style="max-width: 750px; margin: 0.5rem auto 0; color: var(--text-muted);">
+            Dedicated repository for official files, syllabi, coursework distributions, circulars, notes, and research materials shared by PhD guide / university.
+        </p>
+
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="docSearch" class="search-input" placeholder="Search guide documents (e.g. syllabus, coursework, admission, fellowship, JRF, cattle, HoD)..." oninput="filterDocs()">
+            <button id="searchClear" onclick="clearSearch()" title="Clear search" style="display:none;position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--accent);font-size:1.2rem;cursor:pointer;padding:0.2rem 0.4rem;">&#x2715;</button>
+        </div>
+        <p id="searchCount" style="margin:0.5rem auto 0;font-size:0.85rem;color:var(--accent);min-height:1.2em;"></p>
+
+        <div class="quick-actions">
+            <button onclick="downloadAllFiltered()" class="btn-phd-action"><i class="fas fa-cloud-download-alt"></i> Download All Filtered Files</button>
+            <a href="download.html" class="btn-phd-action" style="background: rgba(255,255,255,0.05); border-color: var(--glass-border); color: var(--text-main);"><i class="fas fa-arrow-left"></i> Back to Main Download Center</a>
+        </div>
+    </div>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 20px 100px;">
+
+        <!-- CATEGORY 1: COURSEWORK, SYLLABUS & ADMISSION -->
+        <section class="section" style="padding: 25px 0;">
+            <h2 class="section-title">📖 <span>Coursework, Syllabi & Admission</span></h2>
+            <div class="dl-grid">
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Syllabus</span>
+                        <h4>Life Sciences PhD Course Syllabus 2019</h4>
+                        <p>Official curriculum & PhD course syllabus for Life Sciences doctoral program.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Life%20Sciences%20PhD%20course%20syllabus%202019.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/Life%20Sciences%20PhD%20course%20syllabus%202019.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Coursework</span>
+                        <h4>Course Work Distribution 2026</h4>
+                        <p>Distribution details and curriculum schedule for doctoral coursework 2026.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Course%20work%20distribution%202026.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/Course%20work%20distribution%202026.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Notification</span>
+                        <h4>Selected Candidates for PhD Program 2026</h4>
+                        <p>Official notification list of candidates selected for the PhD research program 2026.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Selected%20candidates%20for%20PhD%20program%202026.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/Selected%20candidates%20for%20PhD%20program%202026.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Admission</span>
+                        <h4>Mizoram University Admission</h4>
+                        <p>Admission documents & official circular for university doctoral registration.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Mizoram%20unive%20admission.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/Mizoram%20unive%20admission.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CATEGORY 2: FELLOWSHIPS, RULES & OFFICIAL CORRESPONDENCE -->
+        <section class="section" style="padding: 25px 0;">
+            <h2 class="section-title">🏛️ <span>Fellowship Rules & Official Letters</span></h2>
+            <div class="dl-grid">
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Rules</span>
+                        <h4>UGC JRF RULE Guidelines</h4>
+                        <p>Complete official regulations and operational rules for UGC Junior Research Fellowship.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/UGC%20JRF%20RULE.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/UGC%20JRF%20RULE.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Guidelines</span>
+                        <h4>Revised FAQ for Non-NET Fellowship</h4>
+                        <p>Comprehensive guidelines, FAQ, and official application forms for Non-NET fellowship.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Revised%20FAQ%20for%20Non-NET%20fellowship(Guidelines%20%26%20Application%20forms).pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/Revised%20FAQ%20for%20Non-NET%20fellowship(Guidelines%20%26%20Application%20forms).pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Official Letter</span>
+                        <h4>Letter to HoD (Head of Department)</h4>
+                        <p>Official formal letter and submission sent to Head of Department.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Letter%20to%20HoD.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/Letter%20to%20HoD.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PDF Candidate Record</span>
+                        <h4>Angsuman Das — Doctoral Candidate File</h4>
+                        <p>Personal candidate document record and admission verification file.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/AMGSUMAN%20DAS.pdf" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View PDF</a>
+                        <a href="./documents/phd_guide_docs/AMGSUMAN%20DAS.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CATEGORY 3: PRESENTATIONS, RESEARCH NOTES & NOTICES -->
+        <section class="section" style="padding: 25px 0;">
+            <h2 class="section-title">🔬 <span>Presentations, Research Notes & Notices</span></h2>
+            <div class="dl-grid">
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">PPTX Presentation</span>
+                        <h4>Humanisation Of Cattle Presentation</h4>
+                        <p>Research slide deck on humanisation of cattle, breed dynamics, and molecular studies.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/Humanisation%20Of%20Cattle.pptx" download class="doc-btn"><i class="fas fa-download"></i> Download PPTX</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">TXT Guide Notes</span>
+                        <h4>Research Guidance Notes & Metagenomics References</h4>
+                        <p>Notes on 16S/shotgun metagenomics, bioinformatics books, sequencing pricing, and cattle breeds.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/7%2034%20PM%209%2023%202026%20Angsuman.txt" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Notes</a>
+                        <a href="./documents/phd_guide_docs/7%2034%20PM%209%2023%202026%20Angsuman.txt" download class="doc-btn"><i class="fas fa-download"></i> Download TXT</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Image Document</span>
+                        <h4>Department Notice & Guide Communication (17 Sep 2026)</h4>
+                        <p>Circular / image update regarding PhD departmental guidelines and schedule.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/WhatsApp%20Image%202026-09-17%20at%201.33.28%20PM.jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/phd_guide_docs/WhatsApp%20Image%202026-09-17%20at%201.33.28%20PM.jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
+                        <span class="format-badge">Image Document</span>
+                        <h4>Department Notice & Schedule (22 Sep 2026)</h4>
+                        <p>Official communication image regarding research scheduling and lab guidelines.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/phd_guide_docs/WhatsApp%20Image%202026-09-22%20at%209.39.01%20PM.jpeg" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
+                        <a href="./documents/phd_guide_docs/WhatsApp%20Image%202026-09-22%20at%209.39.01%20PM.jpeg" download class="doc-btn"><i class="fas fa-download"></i> Download JPEG</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Action Button pointing to PhD Repository -->
+    <a href="phd-docs.html" class="phd-fab" title="PhD Guide Documents">
+        <i class="fas fa-graduation-cap"></i>
+        <span class="tooltip">PhD Guide Documents</span>
+    </a>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Angsumi" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://rangachakua.blogspot.com" target="_blank"><i class="fas fa-blog"></i></a>
+            <a href="mailto:angsudas62@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Built with ❤️ for Angsuman Das | CSIR-UGC NET JRF</p>
+    </footer>
+
+    <script>
+        /* ── Smart Document Search Engine ───────────────────────────────── */
+        const SYNONYMS = {
+            "syllabus":    ["syllabus", "curriculum", "course"],
+            "coursework":  ["course work", "coursework", "distribution", "credit"],
+            "admission":   ["admission", "registration", "mizoram", "enrollment"],
+            "fellowship":  ["fellowship", "non-net", "jrf", "stipend"],
+            "jrf":         ["jrf", "ugc", "csir", "fellowship", "rule"],
+            "ugc":         ["ugc", "jrf", "rule", "guidelines"],
+            "hod":         ["hod", "head of department", "letter"],
+            "letter":      ["letter", "hod", "application"],
+            "cattle":      ["cattle", "humanisation", "cow", "breed", "livestock"],
+            "presentation":["presentation", "pptx", "slide", "slides"],
+            "slides":      ["slides", "presentation", "pptx", "16s", "shotgun"],
+            "notes":       ["notes", "angsuman.txt", "metagenomics", "bioinformatics"],
+            "selected":    ["selected", "selection list", "candidates", "merit"],
+            "faq":         ["faq", "guidelines", "application form"],
+            "mizoram":     ["mizoram", "university", "admission"],
+            "whatsapp":    ["whatsapp", "notice", "circular", "image"],
+            "notice":      ["notice", "whatsapp", "communication", "schedule"],
+        };
+
+        function getSearchableText(card) {
+            const h4    = (card.querySelector("h4") || {innerText:""}).innerText;
+            const p     = (card.querySelector("p") || {innerText:""}).innerText;
+            const badge = (card.querySelector(".format-badge") || {innerText:""}).innerText;
+            const hrefs = [...card.querySelectorAll("a[href]")]
+                .map(a => a.getAttribute("href").split("/").pop().replace(/[_%]/g," ").replace(/\.[^.]+$/,""))
+                .join(" ");
+            return `${h4} ${h4} ${h4} ${p} ${p} ${badge} ${hrefs}`.toLowerCase();
+        }
+
+        function expandTerm(term) {
+            const terms = new Set([term]);
+            const direct = SYNONYMS[term];
+            if (direct) direct.forEach(s => terms.add(s));
+            Object.entries(SYNONYMS).forEach(([key, vals]) => {
+                if (term.includes(key)) vals.forEach(v => terms.add(v));
+            });
+            return [...terms];
+        }
+
+        function scoreCard(text, terms) {
+            let score = 0;
+            for (const term of terms) {
+                const expanded = expandTerm(term);
+                let termScore = 0;
+                for (const variant of expanded) {
+                    if (text.includes(variant)) termScore = Math.max(termScore, variant.length);
+                }
+                if (termScore === 0) return 0;
+                score += termScore;
+            }
+            return score;
+        }
+
+        function filterDocs() {
+            const raw   = document.getElementById("docSearch").value.trim().toLowerCase();
+            const count = document.getElementById("searchCount");
+            const clear = document.getElementById("searchClear");
+
+            clear.style.display = raw ? "block" : "none";
+            const terms = raw ? raw.split(/\s+/).filter(Boolean) : [];
+
+            const allCards    = document.querySelectorAll(".doc-item");
+            const allSections = document.querySelectorAll("main > section");
+            let visible = 0;
+
+            if (!raw) {
+                allCards.forEach(c => { c.style.display = ""; });
+                allSections.forEach(s => { s.style.display = ""; });
+                count.textContent = "";
+                return;
+            }
+
+            allCards.forEach(card => {
+                const score = scoreCard(getSearchableText(card), terms);
+                if (score > 0) { card.style.display = ""; visible++; }
+                else           { card.style.display = "none"; }
+            });
+
+            allSections.forEach(section => {
+                const anyVisible = [...section.querySelectorAll(".doc-item")].some(c => c.style.display !== "none");
+                section.style.display = anyVisible ? "" : "none";
+            });
+
+            count.textContent = visible === 0
+                ? "⚠ No matching PhD guide documents found. Try another keyword."
+                : `✓ ${visible} document${visible !== 1 ? "s" : ""} found`;
+        }
+
+        function clearSearch() {
+            document.getElementById("docSearch").value = "";
+            filterDocs();
+            document.getElementById("docSearch").focus();
+        }
+
+        // Trigger simultaneous download of all currently visible filtered files
+        async function downloadAllFiltered() {
+            const visibleCards = [...document.querySelectorAll(".doc-item")].filter(c => c.style.display !== "none");
+            const links = [];
+            visibleCards.forEach(card => {
+                const dl = card.querySelector("a[download]");
+                if (dl) links.push(dl);
+            });
+
+            if (links.length === 0) {
+                alert("No documents are currently visible to download.");
+                return;
+            }
+
+            if (!confirm(`Download all ${links.length} visible document(s) now?`)) return;
+
+            for (let i = 0; i < links.length; i++) {
+                links[i].click();
+                await new Promise(r => setTimeout(r, 400));
+            }
+        }
+
+        // Direct blob downloader so download attribute works flawlessly across browsers
+        document.querySelectorAll("a[download]").forEach((downloadLink) => {
+            downloadLink.addEventListener("click", async (event) => {
+                event.preventDefault();
+                try {
+                    const response = await fetch(downloadLink.href);
+                    if (!response.ok) throw new Error("Download failed");
+                    const file = await response.blob();
+                    const objectUrl = URL.createObjectURL(file);
+                    const link = document.createElement("a");
+                    const pathname = new URL(downloadLink.href, window.location.href).pathname;
+                    link.href = objectUrl;
+                    link.download = decodeURIComponent(pathname.split("/").pop()) || "document";
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    URL.revokeObjectURL(objectUrl);
+                } catch (error) {
+                    window.open(downloadLink.href, "_blank", "noopener");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
