@@ -10,7 +10,7 @@
     <style>
         .page-header {
             text-align: center;
-            padding: 120px 20px 30px;
+            padding: 120px 20px 25px;
         }
         .search-box {
             max-width: 650px;
@@ -41,6 +41,62 @@
             color: var(--accent);
             font-size: 1.1rem;
         }
+
+        /* ── Filter Pills Container ── */
+        .filter-controls-container {
+            max-width: 950px;
+            margin: 1.5rem auto 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            align-items: center;
+        }
+        .filter-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .filter-row-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-right: 0.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .filter-pill {
+            padding: 0.4rem 0.95rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            user-select: none;
+        }
+        .filter-pill:hover {
+            border-color: var(--accent);
+            color: var(--text-main);
+            transform: translateY(-1px);
+        }
+        .filter-pill.active {
+            background: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(100, 255, 218, 0.4);
+        }
+
         .dl-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -51,11 +107,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
         .dl-card h4 {
             color: var(--text-main);
             font-size: 1.05rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             word-break: break-word;
         }
         .dl-card p {
@@ -63,17 +120,34 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
         }
+        .card-meta-tags {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
         .format-badge {
             display: inline-block;
             padding: 0.25rem 0.6rem;
             background: rgba(100, 255, 218, 0.12);
             color: var(--accent);
             border-radius: 6px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.6rem;
+            background: rgba(204, 214, 246, 0.08);
+            color: var(--text-muted);
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 500;
         }
         .doc-btn-group {
             display: flex;
@@ -202,6 +276,30 @@
             <input type="text" id="docSearch" class="search-input" placeholder="Search guide documents (e.g. syllabus, coursework, admission, fellowship, JRF, cattle, HoD)..." oninput="filterDocs()">
             <button id="searchClear" onclick="clearSearch()" title="Clear search" style="display:none;position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--accent);font-size:1.2rem;cursor:pointer;padding:0.2rem 0.4rem;">&#x2715;</button>
         </div>
+
+        <!-- Filter Pills: Date Chronology & File Types -->
+        <div class="filter-controls-container">
+            <!-- Row 1: Date Chronology -->
+            <div class="filter-row">
+                <span class="filter-row-label"><i class="fas fa-calendar-alt"></i> Date:</span>
+                <button class="filter-pill active" data-filter="date" data-value="all" onclick="setFilter(this, 'date', 'all')"><i class="fas fa-th"></i> All Dates</button>
+                <button class="filter-pill" data-filter="date" data-value="newest" onclick="setFilter(this, 'date', 'newest')"><i class="fas fa-sort-amount-down"></i> Newest First</button>
+                <button class="filter-pill" data-filter="date" data-value="oldest" onclick="setFilter(this, 'date', 'oldest')"><i class="fas fa-sort-amount-up-alt"></i> Oldest First</button>
+                <button class="filter-pill" data-filter="date" data-value="2026" onclick="setFilter(this, 'date', '2026')">2026 Docs</button>
+                <button class="filter-pill" data-filter="date" data-value="archive" onclick="setFilter(this, 'date', 'archive')">Archive (Pre-2026)</button>
+            </div>
+
+            <!-- Row 2: File Types -->
+            <div class="filter-row">
+                <span class="filter-row-label"><i class="fas fa-filter"></i> Type:</span>
+                <button class="filter-pill active" data-filter="type" data-value="all" onclick="setFilter(this, 'type', 'all')"><i class="fas fa-layer-group"></i> All Types</button>
+                <button class="filter-pill" data-filter="type" data-value="pdf" onclick="setFilter(this, 'type', 'pdf')"><i class="fas fa-file-pdf"></i> PDF</button>
+                <button class="filter-pill" data-filter="type" data-value="ppt" onclick="setFilter(this, 'type', 'ppt')"><i class="fas fa-file-powerpoint"></i> PPT / PPTX</button>
+                <button class="filter-pill" data-filter="type" data-value="jpg" onclick="setFilter(this, 'type', 'jpg')"><i class="fas fa-file-image"></i> Images / JPG</button>
+                <button class="filter-pill" data-filter="type" data-value="txt" onclick="setFilter(this, 'type', 'txt')"><i class="fas fa-file-alt"></i> Notes / TXT</button>
+            </div>
+        </div>
+
         <p id="searchCount" style="margin:0.5rem auto 0;font-size:0.85rem;color:var(--accent);min-height:1.2em;"></p>
 
         <div class="quick-actions">
@@ -217,9 +315,12 @@
             <h2 class="section-title">📖 <span>Coursework, Syllabi & Admission</span></h2>
             <div class="dl-grid">
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2019-07-01" data-year="archive">
                     <div>
-                        <span class="format-badge">PDF Syllabus</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Syllabus</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> 2019</span>
+                        </div>
                         <h4>Life Sciences PhD Course Syllabus 2019</h4>
                         <p>Official curriculum & PhD course syllabus for Life Sciences doctoral program.</p>
                     </div>
@@ -229,9 +330,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2026-08-15" data-year="2026">
                     <div>
-                        <span class="format-badge">PDF Coursework</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Coursework</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> 2026</span>
+                        </div>
                         <h4>Course Work Distribution 2026</h4>
                         <p>Distribution details and curriculum schedule for doctoral coursework 2026.</p>
                     </div>
@@ -241,9 +345,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2026-09-01" data-year="2026">
                     <div>
-                        <span class="format-badge">PDF Notification</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Notification</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> Sep 2026</span>
+                        </div>
                         <h4>Selected Candidates for PhD Program 2026</h4>
                         <p>Official notification list of candidates selected for the PhD research program 2026.</p>
                     </div>
@@ -253,9 +360,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2026-09-10" data-year="2026">
                     <div>
-                        <span class="format-badge">PDF Admission</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Admission</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> Sep 2026</span>
+                        </div>
                         <h4>Mizoram University Admission</h4>
                         <p>Admission documents & official circular for university doctoral registration.</p>
                     </div>
@@ -273,9 +383,12 @@
             <h2 class="section-title">🏛️ <span>Fellowship Rules & Official Letters</span></h2>
             <div class="dl-grid">
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2020-01-01" data-year="archive">
                     <div>
-                        <span class="format-badge">PDF Rules</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Rules</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> UGC Archive</span>
+                        </div>
                         <h4>UGC JRF RULE Guidelines</h4>
                         <p>Complete official regulations and operational rules for UGC Junior Research Fellowship.</p>
                     </div>
@@ -285,9 +398,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2023-01-01" data-year="archive">
                     <div>
-                        <span class="format-badge">PDF Guidelines</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Guidelines</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> Guidelines</span>
+                        </div>
                         <h4>Revised FAQ for Non-NET Fellowship</h4>
                         <p>Comprehensive guidelines, FAQ, and official application forms for Non-NET fellowship.</p>
                     </div>
@@ -297,9 +413,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2026-09-12" data-year="2026">
                     <div>
-                        <span class="format-badge">PDF Official Letter</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Official Letter</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> Sep 2026</span>
+                        </div>
                         <h4>Letter to HoD (Head of Department)</h4>
                         <p>Official formal letter and submission sent to Head of Department.</p>
                     </div>
@@ -309,9 +428,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="pdf" data-date="2026-09-15" data-year="2026">
                     <div>
-                        <span class="format-badge">PDF Candidate Record</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PDF Candidate Record</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> Sep 2026</span>
+                        </div>
                         <h4>Angsuman Das — Doctoral Candidate File</h4>
                         <p>Personal candidate document record and admission verification file.</p>
                     </div>
@@ -329,9 +451,12 @@
             <h2 class="section-title">🔬 <span>Presentations, Research Notes & Notices</span></h2>
             <div class="dl-grid">
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="ppt" data-date="2026-09-20" data-year="2026">
                     <div>
-                        <span class="format-badge">PPTX Presentation</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">PPTX Presentation</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> Sep 2026</span>
+                        </div>
                         <h4>Humanisation Of Cattle Presentation</h4>
                         <p>Research slide deck on humanisation of cattle, breed dynamics, and molecular studies.</p>
                     </div>
@@ -340,9 +465,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="txt" data-date="2026-09-23" data-year="2026">
                     <div>
-                        <span class="format-badge">TXT Guide Notes</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">TXT Guide Notes</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> 23 Sep 2026</span>
+                        </div>
                         <h4>Research Guidance Notes & Metagenomics References</h4>
                         <p>Notes on 16S/shotgun metagenomics, bioinformatics books, sequencing pricing, and cattle breeds.</p>
                     </div>
@@ -352,9 +480,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="jpg" data-date="2026-09-17" data-year="2026">
                     <div>
-                        <span class="format-badge">Image Document</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">Image Document</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> 17 Sep 2026</span>
+                        </div>
                         <h4>Department Notice & Guide Communication (17 Sep 2026)</h4>
                         <p>Circular / image update regarding PhD departmental guidelines and schedule.</p>
                     </div>
@@ -364,9 +495,12 @@
                     </div>
                 </div>
 
-                <div class="dl-card glass doc-item">
+                <div class="dl-card glass doc-item" data-type="jpg" data-date="2026-09-22" data-year="2026">
                     <div>
-                        <span class="format-badge">Image Document</span>
+                        <div class="card-meta-tags">
+                            <span class="format-badge">Image Document</span>
+                            <span class="date-badge"><i class="far fa-calendar"></i> 22 Sep 2026</span>
+                        </div>
                         <h4>Department Notice & Schedule (22 Sep 2026)</h4>
                         <p>Official communication image regarding research scheduling and lab guidelines.</p>
                     </div>
@@ -397,35 +531,72 @@
     </footer>
 
     <script>
+        /* ── Active Filter State ────────────────────────────────────────── */
+        let activeDateFilter = 'all'; // all, newest, oldest, 2026, archive
+        let activeTypeFilter = 'all'; // all, pdf, ppt, jpg, txt
+
+        function setFilter(btn, category, value) {
+            // Update active styling in row
+            const row = btn.parentElement;
+            row.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (category === 'date') activeDateFilter = value;
+            if (category === 'type') activeTypeFilter = value;
+
+            // Re-apply sorting if date chronology requested
+            if (category === 'date' && (value === 'newest' || value === 'oldest')) {
+                sortCardsByDate(value === 'newest');
+            }
+
+            filterDocs();
+        }
+
+        function sortCardsByDate(descending) {
+            document.querySelectorAll('.dl-grid').forEach(grid => {
+                const cards = Array.from(grid.querySelectorAll('.doc-item'));
+                cards.sort((a, b) => {
+                    const dateA = a.getAttribute('data-date') || '1970-01-01';
+                    const dateB = b.getAttribute('data-date') || '1970-01-01';
+                    return descending ? dateB.localeCompare(dateA) : dateA.localeCompare(dateB);
+                });
+                cards.forEach(card => grid.appendChild(card));
+            });
+        }
+
         /* ── Smart Document Search Engine ───────────────────────────────── */
         const SYNONYMS = {
-            "syllabus":    ["syllabus", "curriculum", "course"],
-            "coursework":  ["course work", "coursework", "distribution", "credit"],
-            "admission":   ["admission", "registration", "mizoram", "enrollment"],
-            "fellowship":  ["fellowship", "non-net", "jrf", "stipend"],
-            "jrf":         ["jrf", "ugc", "csir", "fellowship", "rule"],
-            "ugc":         ["ugc", "jrf", "rule", "guidelines"],
-            "hod":         ["hod", "head of department", "letter"],
-            "letter":      ["letter", "hod", "application"],
-            "cattle":      ["cattle", "humanisation", "cow", "breed", "livestock"],
-            "presentation":["presentation", "pptx", "slide", "slides"],
-            "slides":      ["slides", "presentation", "pptx", "16s", "shotgun"],
-            "notes":       ["notes", "angsuman.txt", "metagenomics", "bioinformatics"],
-            "selected":    ["selected", "selection list", "candidates", "merit"],
-            "faq":         ["faq", "guidelines", "application form"],
-            "mizoram":     ["mizoram", "university", "admission"],
-            "whatsapp":    ["whatsapp", "notice", "circular", "image"],
-            "notice":      ["notice", "whatsapp", "communication", "schedule"],
+            'syllabus':    ['syllabus', 'curriculum', 'course'],
+            'coursework':  ['course work', 'coursework', 'distribution', 'credit'],
+            'admission':   ['admission', 'registration', 'mizoram', 'enrollment'],
+            'fellowship':  ['fellowship', 'non-net', 'jrf', 'stipend'],
+            'jrf':         ['jrf', 'ugc', 'csir', 'fellowship', 'rule'],
+            'ugc':         ['ugc', 'jrf', 'rule', 'guidelines'],
+            'hod':         ['hod', 'head of department', 'letter'],
+            'letter':      ['letter', 'hod', 'application'],
+            'cattle':      ['cattle', 'humanisation', 'cow', 'breed', 'livestock'],
+            'presentation':['presentation', 'pptx', 'slide', 'slides'],
+            'slides':      ['slides', 'presentation', 'pptx', '16s', 'shotgun'],
+            'notes':       ['notes', 'angsuman.txt', 'metagenomics', 'bioinformatics'],
+            'selected':    ['selected', 'selection list', 'candidates', 'merit'],
+            'faq':         ['faq', 'guidelines', 'application form'],
+            'mizoram':     ['mizoram', 'university', 'admission'],
+            'whatsapp':    ['whatsapp', 'notice', 'circular', 'image'],
+            'notice':      ['notice', 'whatsapp', 'communication', 'schedule'],
+            'pdf':         ['pdf'],
+            'ppt':         ['ppt', 'pptx', 'presentation', 'slides'],
+            'jpg':         ['jpg', 'jpeg', 'image'],
+            'txt':         ['txt', 'notes'],
         };
 
         function getSearchableText(card) {
-            const h4    = (card.querySelector("h4") || {innerText:""}).innerText;
-            const p     = (card.querySelector("p") || {innerText:""}).innerText;
-            const badge = (card.querySelector(".format-badge") || {innerText:""}).innerText;
-            const hrefs = [...card.querySelectorAll("a[href]")]
-                .map(a => a.getAttribute("href").split("/").pop().replace(/[_%]/g," ").replace(/\.[^.]+$/,""))
-                .join(" ");
-            return `${h4} ${h4} ${h4} ${p} ${p} ${badge} ${hrefs}`.toLowerCase();
+            const h4    = (card.querySelector('h4') || {innerText:''}).innerText;
+            const p     = (card.querySelector('p') || {innerText:''}).innerText;
+            const badge = (card.querySelector('.format-badge') || {innerText:''}).innerText;
+            const hrefs = Array.from(card.querySelectorAll('a[href]'))
+                .map(a => a.getAttribute('href').split('/').pop().replace(/[_%]/g,' ').replace(/\.[^.]+$/,''))
+                .join(' ');
+            return (h4 + ' ' + h4 + ' ' + h4 + ' ' + p + ' ' + p + ' ' + badge + ' ' + hrefs).toLowerCase();
         }
 
         function expandTerm(term) {
@@ -435,10 +606,11 @@
             Object.entries(SYNONYMS).forEach(([key, vals]) => {
                 if (term.includes(key)) vals.forEach(v => terms.add(v));
             });
-            return [...terms];
+            return Array.from(terms);
         }
 
         function scoreCard(text, terms) {
+            if (terms.length === 0) return 1;
             let score = 0;
             for (const term of terms) {
                 const expanded = expandTerm(term);
@@ -453,61 +625,80 @@
         }
 
         function filterDocs() {
-            const raw   = document.getElementById("docSearch").value.trim().toLowerCase();
-            const count = document.getElementById("searchCount");
-            const clear = document.getElementById("searchClear");
+            const raw   = document.getElementById('docSearch').value.trim().toLowerCase();
+            const count = document.getElementById('searchCount');
+            const clear = document.getElementById('searchClear');
 
-            clear.style.display = raw ? "block" : "none";
+            clear.style.display = raw ? 'block' : 'none';
             const terms = raw ? raw.split(/\s+/).filter(Boolean) : [];
 
-            const allCards    = document.querySelectorAll(".doc-item");
-            const allSections = document.querySelectorAll("main > section");
+            const allCards    = document.querySelectorAll('.doc-item');
+            const allSections = document.querySelectorAll('main > section');
             let visible = 0;
 
-            if (!raw) {
-                allCards.forEach(c => { c.style.display = ""; });
-                allSections.forEach(s => { s.style.display = ""; });
-                count.textContent = "";
-                return;
-            }
-
             allCards.forEach(card => {
-                const score = scoreCard(getSearchableText(card), terms);
-                if (score > 0) { card.style.display = ""; visible++; }
-                else           { card.style.display = "none"; }
+                const cardType = card.getAttribute('data-type') || '';
+                const cardYear = card.getAttribute('data-year') || '';
+
+                // 1. Check Type Filter
+                let matchesType = (activeTypeFilter === 'all') || (cardType === activeTypeFilter);
+
+                // 2. Check Date Filter (year/archive specific)
+                let matchesDate = true;
+                if (activeDateFilter === '2026') {
+                    matchesDate = (cardYear === '2026');
+                } else if (activeDateFilter === 'archive') {
+                    matchesDate = (cardYear === 'archive');
+                }
+
+                // 3. Check Search Query
+                const text = getSearchableText(card);
+                const score = scoreCard(text, terms);
+                const matchesSearch = (score > 0);
+
+                if (matchesType && matchesDate && matchesSearch) {
+                    card.style.display = '';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
             });
 
             allSections.forEach(section => {
-                const anyVisible = [...section.querySelectorAll(".doc-item")].some(c => c.style.display !== "none");
-                section.style.display = anyVisible ? "" : "none";
+                const anyVisible = Array.from(section.querySelectorAll('.doc-item')).some(c => c.style.display !== 'none');
+                section.style.display = anyVisible ? '' : 'none';
             });
 
-            count.textContent = visible === 0
-                ? "⚠ No matching PhD guide documents found. Try another keyword."
-                : `✓ ${visible} document${visible !== 1 ? "s" : ""} found`;
+            if (!raw && activeTypeFilter === 'all' && (activeDateFilter === 'all' || activeDateFilter === 'newest' || activeDateFilter === 'oldest')) {
+                count.textContent = 'Showing all ' + visible + ' documents';
+            } else if (visible === 0) {
+                count.textContent = '⚠ No matching PhD guide documents found with current filters.';
+            } else {
+                count.textContent = '✓ ' + visible + ' document' + (visible !== 1 ? 's' : '') + ' shown';
+            }
         }
 
         function clearSearch() {
-            document.getElementById("docSearch").value = "";
+            document.getElementById('docSearch').value = '';
             filterDocs();
-            document.getElementById("docSearch").focus();
+            document.getElementById('docSearch').focus();
         }
 
         // Trigger simultaneous download of all currently visible filtered files
         async function downloadAllFiltered() {
-            const visibleCards = [...document.querySelectorAll(".doc-item")].filter(c => c.style.display !== "none");
+            const visibleCards = Array.from(document.querySelectorAll('.doc-item')).filter(c => c.style.display !== 'none');
             const links = [];
             visibleCards.forEach(card => {
-                const dl = card.querySelector("a[download]");
+                const dl = card.querySelector('a[download]');
                 if (dl) links.push(dl);
             });
 
             if (links.length === 0) {
-                alert("No documents are currently visible to download.");
+                alert('No documents are currently visible to download.');
                 return;
             }
 
-            if (!confirm(`Download all ${links.length} visible document(s) now?`)) return;
+            if (!confirm('Download all ' + links.length + ' visible document(s) now?')) return;
 
             for (let i = 0; i < links.length; i++) {
                 links[i].click();
@@ -516,24 +707,24 @@
         }
 
         // Direct blob downloader so download attribute works flawlessly across browsers
-        document.querySelectorAll("a[download]").forEach((downloadLink) => {
-            downloadLink.addEventListener("click", async (event) => {
+        document.querySelectorAll('a[download]').forEach((downloadLink) => {
+            downloadLink.addEventListener('click', async (event) => {
                 event.preventDefault();
                 try {
                     const response = await fetch(downloadLink.href);
-                    if (!response.ok) throw new Error("Download failed");
+                    if (!response.ok) throw new Error('Download failed');
                     const file = await response.blob();
                     const objectUrl = URL.createObjectURL(file);
-                    const link = document.createElement("a");
+                    const link = document.createElement('a');
                     const pathname = new URL(downloadLink.href, window.location.href).pathname;
                     link.href = objectUrl;
-                    link.download = decodeURIComponent(pathname.split("/").pop()) || "document";
+                    link.download = decodeURIComponent(pathname.split('/').pop()) || 'document';
                     document.body.appendChild(link);
                     link.click();
                     link.remove();
                     URL.revokeObjectURL(objectUrl);
                 } catch (error) {
-                    window.open(downloadLink.href, "_blank", "noopener");
+                    window.open(downloadLink.href, '_blank', 'noopener');
                 }
             });
         });
