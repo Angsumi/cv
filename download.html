@@ -82,7 +82,6 @@
                 <li><a href="index.html#experience">Experience</a></li>
                 <li><a href="index.html#publications">Publications</a></li>
                 <li><a href="download.html" style="color: var(--accent); font-weight: 600;">Download Center</a></li>
-                <li><a href="phd-docs.html" style="color: var(--accent); font-weight: 600;"><i class="fas fa-graduation-cap"></i> PhD Docs</a></li>
             </ul>
         </div>
     </nav>
@@ -92,10 +91,8 @@
         <p class="summary" style="margin: 0.5rem auto 0;">Access and download all official academic records, marksheets, identity cards, experience letters, LORs, and research papers in multiple formats.</p>
         <div class="search-box">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" id="docSearch" class="search-input" placeholder="Search documents (e.g. Aadhaar, Marksheet, NET, IELTS, Resume, Passport)..." oninput="filterDocs()">
-            <button id="searchClear" onclick="clearSearch()" title="Clear search" style="display:none;position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--accent);font-size:1.2rem;cursor:pointer;padding:0.2rem 0.4rem;">&#x2715;</button>
+            <input type="text" id="docSearch" class="search-input" placeholder="Search document (e.g., Aadhaar, Marksheet, NET, IELTS, Diploma)..." onkeyup="filterDocs()">
         </div>
-        <p id="searchCount" style="margin:0.5rem auto 0;font-size:0.85rem;color:var(--accent);min-height:1.2em;"></p>
     </div>
 
     <main style="max-width: 1200px; margin: 0 auto; padding: 0 20px 100px;">
@@ -637,6 +634,19 @@
             <div class="dl-grid">
                 <div class="dl-card glass doc-item">
                     <div>
+                        <span class="format-badge">Multiple Formats & Sizes</span>
+                        <h4>UN Volunteers &mdash; AAE Certificate of Appreciation</h4>
+                        <p>Certificate of Appreciation (Ref: 121A00732858) for promoting articles supporting SDG Goal 8.</p>
+                    </div>
+                    <div class="doc-btn-group">
+                        <a href="./documents/work_and_experience/aae_un_volunteers_certificate.png" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Certificate</a>
+                        <a href="./documents/work_and_experience/aae_un_volunteers_certificate.png" download class="doc-btn"><i class="fas fa-download"></i> Download PNG</a>
+                        <button onclick="openConvertModal('./documents/work_and_experience/aae_un_volunteers_certificate.png', 'UN Volunteers Certificate of Appreciation')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format & Size</button>
+                    </div>
+                </div>
+
+                <div class="dl-card glass doc-item">
+                    <div>
                         <span class="format-badge">PDF Document</span>
                         <h4>THB College Experience Certificate</h4>
                         <p>Assistant Professor (Tutor) Dept. of Zoology Experience Certificate.</p>
@@ -694,19 +704,6 @@
                     <div class="doc-btn-group">
                         <a href="./documents/work_and_experience/university_of_portsmouth_offer_letter.pdf" target="_blank" class="doc-btn"><i class="fas fa-file-pdf"></i> View PDF</a>
                         <a href="./documents/work_and_experience/university_of_portsmouth_offer_letter.pdf" download class="doc-btn"><i class="fas fa-download"></i> Download PDF</a>
-                    </div>
-                </div>
-
-                <div class="dl-card glass doc-item">
-                    <div>
-                        <span class="format-badge">Multiple Formats &amp; Sizes</span>
-                        <h4>AAE — United Nations Volunteers Certificate of Appreciation</h4>
-                        <p>Certificate awarded by the Association of African Entrepreneurs (via United Nations Online Volunteering) for promoting articles on relevant online forums in support of SDG Goal 8: Decent Work and Economic Growth. (Oct 2020, Ref: 121A00732858)</p>
-                    </div>
-                    <div class="doc-btn-group">
-                        <a href="./documents/work_and_experience/aae_un_volunteers_certificate.png" target="_blank" class="doc-btn"><i class="fas fa-eye"></i> View Image</a>
-                        <a href="./documents/work_and_experience/aae_un_volunteers_certificate.png" download class="doc-btn"><i class="fas fa-download"></i> Download PNG</a>
-                        <button onclick="openConvertModal('./documents/work_and_experience/aae_un_volunteers_certificate.png', 'AAE United Nations Volunteers Certificate of Appreciation')" class="doc-btn"><i class="fas fa-sliders-h"></i> Custom Format &amp; Size</button>
                     </div>
                 </div>
             </div>
@@ -1066,127 +1063,17 @@
     </div>
 
     <script>
-        /* ── Smart Document Search ─────────────────────────────────────── */
-
-        const SYNONYMS = {
-            'aadhaar': ['aadhar','aadhaar','uid'],
-            'aadhar':  ['aadhaar','aadhar','uid'],
-            'pan':     ['pan card','permanent account'],
-            'voter':   ['voter id','election','voter card'],
-            'passport':['passport'],
-            'license': ['driving licence','dl'],
-            'licence': ['driving licence','license'],
-            'resume':  ['cv','curriculum vitae','resume'],
-            'cv':      ['resume','curriculum vitae','cv'],
-            'net':     ['csir','ugc net','net jrf','jrf','national eligibility'],
-            'jrf':     ['net jrf','csir','ugc','junior research fellowship'],
-            'slet':    ['slet','state level eligibility'],
-            'ielts':   ['ielts','english test'],
-            'msc':     ['msc','m.sc','master','postgraduate','pg'],
-            'bsc':     ['bsc','b.sc','bachelor','undergraduate','ug'],
-            'matric':  ['10th','hslc','seba','matric','secondary'],
-            '10th':    ['hslc','matric','seba','10th','secondary'],
-            'hs':      ['12th','ahsec','higher secondary'],
-            '12th':    ['ahsec','hs','higher secondary','12th'],
-            'marksheet':   ['marksheet','mark sheet','scorecard','grade sheet'],
-            'certificate': ['certificate','cert'],
-            'diploma': ['diploma','pgdca','drawing diploma'],
-            'pgdca':   ['pgdca','diploma','computer'],
-            'coursera':['coursera','genomic','johns hopkins'],
-            'lor':     ['letter of recommendation','reference letter','lor'],
-            'recommendation':['lor','letter of recommendation','reference'],
-            'experience':['experience','internship','certificate of experience'],
-            'internship':['internship','experience','training'],
-            'publication':['publication','paper','journal','research paper'],
-            'paper':   ['publication','paper','journal','article'],
-            'adre':    ['adre','assam direct recruitment','government','appointment'],
-            'thb':     ['thb college','teaching experience','assistant professor'],
-            'rasa':    ['rasa','bioinformatics','research trainee'],
-            'tocklai': ['tocklai','tea research','appointment'],
-            'un':      ['united nations','un volunteers','aae','african entrepreneurs'],
-            'aae':     ['aae','african entrepreneurs','united nations volunteers'],
-            'degree':  ['degree certificate','graduation'],
-            'obc':     ['obc','other backward class','caste'],
-            'caste':   ['obc','caste certificate'],
-            'income':  ['income certificate','annual income'],
-            'birth':   ['birth certificate'],
-            'photo':   ['photo','passport photo','portrait'],
-            'signature':['signature','thumb impression'],
-        };
-
-        function getSearchableText(card) {
-            const h4    = (card.querySelector('h4')             || {innerText:''}).innerText;
-            const p     = (card.querySelector('p')              || {innerText:''}).innerText;
-            const badge = (card.querySelector('.format-badge')  || {innerText:''}).innerText;
-            const hrefs = [...card.querySelectorAll('a[href]')]
-                .map(a => a.getAttribute('href').split('/').pop().replace(/[_%]/g,' ').replace(/\.[^.]+$/,''))
-                .join(' ');
-            return `${h4} ${h4} ${h4} ${p} ${p} ${badge} ${hrefs}`.toLowerCase();
-        }
-
-        function expandTerm(term) {
-            const terms = new Set([term]);
-            const direct = SYNONYMS[term];
-            if (direct) direct.forEach(s => terms.add(s));
-            Object.entries(SYNONYMS).forEach(([key, vals]) => {
-                if (term.includes(key)) vals.forEach(v => terms.add(v));
-            });
-            return [...terms];
-        }
-
-        function scoreCard(text, terms) {
-            let score = 0;
-            for (const term of terms) {
-                const expanded = expandTerm(term);
-                let termScore = 0;
-                for (const variant of expanded) {
-                    if (text.includes(variant)) termScore = Math.max(termScore, variant.length);
-                }
-                if (termScore === 0) return 0;
-                score += termScore;
-            }
-            return score;
-        }
-
         function filterDocs() {
-            const raw   = document.getElementById('docSearch').value.trim().toLowerCase();
-            const count = document.getElementById('searchCount');
-            const clear = document.getElementById('searchClear');
-
-            clear.style.display = raw ? 'block' : 'none';
-            const terms = raw ? raw.split(/\s+/).filter(Boolean) : [];
-
-            const allCards    = document.querySelectorAll('.doc-item');
-            const allSections = document.querySelectorAll('main > section');
-            let visible = 0;
-
-            if (!raw) {
-                allCards.forEach(c => { c.style.display = ''; });
-                allSections.forEach(s => { s.style.display = ''; });
-                count.textContent = '';
-                return;
-            }
-
-            allCards.forEach(card => {
-                const score = scoreCard(getSearchableText(card), terms);
-                if (score > 0) { card.style.display = ''; visible++; }
-                else           { card.style.display = 'none'; }
+            const query = document.getElementById('docSearch').value.toLowerCase();
+            const items = document.querySelectorAll('.doc-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
             });
-
-            allSections.forEach(section => {
-                const anyVisible = [...section.querySelectorAll('.doc-item')].some(c => c.style.display !== 'none');
-                section.style.display = anyVisible ? '' : 'none';
-            });
-
-            count.textContent = visible === 0
-                ? '⚠ No documents found. Try a different keyword.'
-                : `✓ ${visible} document${visible !== 1 ? 's' : ''} found`;
-        }
-
-        function clearSearch() {
-            document.getElementById('docSearch').value = '';
-            filterDocs();
-            document.getElementById('docSearch').focus();
         }
 
         let currentImgUrl = '';
@@ -1290,10 +1177,5 @@
             });
         });
     </script>
-    <!-- Floating bottom PhD Guide Documents Icon -->
-    <a href="phd-docs.html" class="phd-fab" title="PhD Guide Documents">
-        <i class="fas fa-graduation-cap"></i>
-        <span class="tooltip">PhD Guide Documents</span>
-    </a>
 </body>
 </html>
