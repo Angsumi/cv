@@ -238,3 +238,9 @@ footer p { margin: 0; }
   a { color: #000; background: none; }
   .wrap { width: 100%; }
 }
+
+/* Footer button */
+footer .footbtn { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .5rem 1rem; border: 1px solid var(--accent); border-radius: 999px;
+  font: 500 .8125rem/1 var(--sans); color: var(--accent); background: none; transition: transform .15s var(--ease), background-color .15s var(--ease), color .15s var(--ease); }
+footer .footbtn:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); }
+footer .footbtn:active { transform: scale(.98); }
