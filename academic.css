@@ -244,3 +244,18 @@ footer .footbtn { display: inline-flex; align-items: center; gap: .5rem; min-hei
   font: 500 .8125rem/1 var(--sans); color: var(--accent); background: none; transition: transform .15s var(--ease), background-color .15s var(--ease), color .15s var(--ease); }
 footer .footbtn:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); }
 footer .footbtn:active { transform: scale(.98); }
+
+/* Profile links: brand icons in their own colours */
+.profiles a { display: inline-flex; align-items: center; gap: .45rem; }
+.profiles .i { width: 1.15em; height: 1.15em; flex: none; transition: transform .15s var(--ease); }
+.profiles a:hover .i { transform: translateY(-1px); }
+.profiles .cv .i { color: var(--accent); }
+.profiles .orcid .i { color: #a6ce39; }
+.profiles .rg .i { color: #00ccbb; }
+.profiles .li .i { color: #0a66c2; }
+.profiles .gh .i { color: #181717; }
+.profiles .x .i { color: #000; }
+@media (prefers-color-scheme: dark) {
+  .profiles .li .i { color: #4c9be8; }
+  .profiles .gh .i, .profiles .x .i { color: #f0f0ea; }
+}
