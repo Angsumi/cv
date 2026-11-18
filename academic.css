@@ -259,3 +259,9 @@ footer .footbtn:active { transform: scale(.98); }
   .profiles .li .i { color: #4c9be8; }
   .profiles .gh .i, .profiles .x .i { color: #f0f0ea; }
 }
+/* Profile links: small, one row */
+.profiles { flex-wrap: nowrap; gap: 1.1rem; overflow-x: auto; scrollbar-width: none; font-size: .8125rem; }
+.profiles::-webkit-scrollbar { display: none; }
+.profiles li { flex: none; }
+.profiles a { gap: .35rem; white-space: nowrap; }
+.profiles .i { width: 14px; height: 14px; }
